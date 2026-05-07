@@ -30,7 +30,7 @@ export default function Problem() {
   ];
 
   return (
-    <section className="relative py-24 bg-[#0a0a0a] overflow-hidden">
+    <section className="relative md:py-24 py-12 bg-[#0a0a0a] overflow-hidden">
       {/* Background accent */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-orange-500/0 via-orange-500/40 to-orange-500/0" />
 
@@ -55,7 +55,7 @@ export default function Problem() {
           {painPoints.map((p, i) => (
             <div
               key={i}
-              className="group flex items-start gap-4 p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/30 hover:bg-orange-500/5 transition-all duration-300"
+              className="group flex items-start gap-4 sm:p-6 p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/30 hover:bg-orange-500/5 transition-all duration-300"
               style={{ animationDelay: `${i * 0.1}s` }}
             >
               <span className="text-2xl mt-0.5">{p.icon}</span>
@@ -65,8 +65,8 @@ export default function Problem() {
         </div>
 
         {/* Inner voice section */}
-        <div className="relative p-8 rounded-3xl bg-gradient-to-br from-red-900/20 to-orange-900/10 border border-red-500/20">
-          <div className="absolute -top-3 left-8 px-4 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-xs font-semibold tracking-wide">
+        <div className="relative md:p-8 p-4 rounded-3xl bg-gradient-to-br from-red-900/20 to-orange-900/10 border border-red-500/20">
+          <div className="absolute sm:-top-3 -top-6 sm:left-8 left-1 px-4 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-xs font-semibold tracking-wide">
             THE INNER VOICE THAT HOLDS YOU BACK
           </div>
           <div className="grid sm:grid-cols-2 gap-3 mt-2">
@@ -85,6 +85,15 @@ export default function Problem() {
             And the worst part? You start{" "}
             <span className="text-orange-400 font-semibold">doubting yourself.</span>
           </p>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10 ">
+          
+              <button className="bg-[#f35113] cursor-pointer text-white sm:px-8 px-4 sm:py-4 py-3 rounded-full sm:text-lg text-[16px] font-medium shadow-lg hover:scale-105 transition">
+                👉 Start Your Journey Today
+              </button>
+
         </div>
       </div>
     </section>

@@ -17,14 +17,14 @@ export default function TruthAbout() {
 
   const stats = [
     { num: "800+", label: "People Guided" },
-    { num: "6+", label: "Skills Taught" },
+    { num: "45+", label: "Skills Taught" },
     { num: "₹0→₹50K", label: "Possible Journey" },
   ];
 
   return (
     <>
       {/* Truth Shift */}
-      <section className="relative py-24 bg-[#0d0d0d] overflow-hidden">
+      <section className="relative md:py-24 py-12 bg-[#0d0d0d] overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-orange-500/8 rounded-full blur-[100px]" />
         </div>
@@ -70,6 +70,15 @@ export default function TruthAbout() {
               <span className="text-orange-400">no one simplified it for you.</span>
             </p>
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10 ">
+          
+              <button className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
+                👉 Start Your Journey Today
+              </button>
+
         </div>
       </section>
 
@@ -128,11 +137,11 @@ export default function TruthAbout() {
               </p>
 
               {/* Stats */}
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-3 sm:gap-4 mb-8">
                 {stats.map((s, i) => (
-                  <div key={i} className="p-4 rounded-2xl bg-white/[0.04] border border-white/[0.07] text-center">
-                    <div className="text-xl sm:text-2xl font-black text-orange-400 mb-1">{s.num}</div>
-                    <div className="text-gray-500 text-xs">{s.label}</div>
+                  <div key={i} className="p-4 sm:rounded-2xl bg-white/[0.04] border border-white/[0.07] text-center">
+                    <div className="text-[16px] sm:text-2xl font-black text-orange-400 mb-1">{s.num}</div>
+                    <div className="text-gray-500 sm:text-xs text-[12px]">{s.label}</div>
                   </div>
                 ))}
               </div>

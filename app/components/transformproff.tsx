@@ -32,7 +32,7 @@ export default function TransformProof() {
   return (
     <>
       {/* Transformation Section */}
-      <section className="relative py-24 bg-[#0d0d0d] overflow-hidden">
+      <section className="relative md:py-24 py-12 bg-[#0d0d0d] overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-orange-500/8 rounded-full blur-[120px]" />
         </div>
@@ -93,10 +93,19 @@ export default function TransformProof() {
             </p>
           </div>
         </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10">
+          
+              <button className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
+                👉 Start Your Journey Today
+              </button>
+
+        </div>
       </section>
 
       {/* Social Proof */}
-      <section id="proof" className="relative py-24 bg-[#080808] overflow-hidden">
+      <section id="proof" className="relative md:py-24 py-12 bg-[#080808] overflow-hidden">
         <div
           ref={proofRef}
           className="max-w-6xl mx-auto px-4 sm:px-6 opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
@@ -117,7 +126,7 @@ export default function TransformProof() {
           <div className="grid grid-cols-3 gap-4 mb-12 p-6 rounded-2xl bg-gradient-to-r from-orange-500/10 to-amber-500/5 border border-orange-500/20">
             {[
               { num: "800+", label: "Active Learners" },
-              { num: "6", label: "Skills Covered" },
+              { num: "45+", label: "Skills Covered" },
               { num: "₹50K+", label: "Avg Monthly Earning" },
             ].map((s, i) => (
               <div key={i} className="text-center">
@@ -154,6 +163,15 @@ export default function TransformProof() {
             <p className="text-gray-600 text-sm mb-2">📸 Add screenshots, DMs, and before/after stories here</p>
             <p className="text-gray-700 text-xs">This section is critical for conversions — add real testimonials!</p>
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10">
+          
+              <button className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
+                👉 Start Your Journey Today
+              </button>
+
         </div>
       </section>
     </>

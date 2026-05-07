@@ -34,7 +34,7 @@ export default function ObjMissionCTA() {
   return (
     <>
       {/* Objection Handling */}
-      <section className="relative py-24 bg-[#0d0d0d] overflow-hidden">
+      <section className="relative md:py-24 py-12 bg-[#0d0d0d] overflow-hidden">
         <div
           ref={objRef}
           className="max-w-4xl mx-auto px-4 sm:px-6 opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
@@ -69,7 +69,7 @@ export default function ObjMissionCTA() {
       </section>
 
       {/* Mission Section */}
-      <section className="relative py-24 bg-[#080808] overflow-hidden">
+      <section className="relative md:py-24 py-12 bg-[#080808] overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-orange-500/8 rounded-full blur-[120px]" />
         </div>
@@ -109,7 +109,7 @@ export default function ObjMissionCTA() {
       </section>
 
       {/* What Happens After Joining */}
-      <section className="relative py-20 bg-[#0a0a0a] overflow-hidden">
+      <section className="relative md:py-24 py-12 bg-[#0a0a0a] overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">After You Join</span>
@@ -133,7 +133,7 @@ export default function ObjMissionCTA() {
       </section>
 
       {/* Final CTA */}
-      <section id="cta" className="relative py-28 bg-[#080808] overflow-hidden">
+      <section id="cta" className="relative md:py-24 py-12 bg-[#080808] overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-orange-500/12 rounded-full blur-[130px]" />
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
@@ -164,7 +164,7 @@ export default function ObjMissionCTA() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-black text-xl rounded-full overflow-hidden shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-300"
+              className="group relative w-full sm:w-auto sm:px-10 md:py-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-black md:text-xl text-[18px] rounded-full overflow-hidden shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-300"
             >
               <span className="relative z-10">👉 Start Your Journey Today</span>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -188,11 +188,8 @@ export default function ObjMissionCTA() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-black text-xs">
-                KP
-              </div>
-              <span className="text-gray-500 text-sm">
-                Kunal<span className="text-orange-400">Patil</span>
+              <span className="text-gray-500 md:text-lg text-xl">
+                Kunal <span className="text-orange-400">Patil</span>
               </span>
             </div>
 
