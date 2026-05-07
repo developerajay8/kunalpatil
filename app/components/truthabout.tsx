@@ -1,160 +1,361 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import LeadPopup from "./leadpopup";
 
 export default function TruthAbout() {
   const ref = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
-  const [open, setOpen] = useState(false);
+
+  const [open, setOpen] =
+    useState(false);
 
   useEffect(() => {
-    const els = [ref.current, aboutRef.current];
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) entry.target.classList.add("animate-in"); },
-      { threshold: 0.1 }
-    );
-    els.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
+    const els = [
+      ref.current,
+      aboutRef.current,
+    ];
+
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (
+            entry.isIntersecting
+          ) {
+            entry.target.classList.add(
+              "animate-in"
+            );
+          }
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
+    els.forEach((el) => {
+      if (el)
+        observer.observe(el);
+    });
+
+    return () =>
+      observer.disconnect();
   }, []);
 
   const stats = [
-    { num: "800+", label: "People Guided" },
-    { num: "45+", label: "Skills Taught" },
-    { num: "₹0→₹50K", label: "Possible Journey" },
+    {
+      num: "800+",
+      label: "People Guided",
+    },
+
+    {
+      num: "45+",
+      label: "Skills Taught",
+    },
+
+    {
+      num: "₹0→₹50K",
+      label: "Possible Journey",
+    },
   ];
 
   return (
     <>
-      {/* Truth Shift */}
-      <section className="relative md:py-24 py-12 bg-[#0d0d0d] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-orange-500/8 rounded-full blur-[100px]" />
+      {/* SECTION 1 */}
+      <section className="relative overflow-hidden bg-[#070707] py-16 sm:py-24">
+        {/* Background Glow */}
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-orange-500/10 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+
+        {/* Center Glow */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[500px] h-[300px] bg-orange-500/10 rounded-full blur-[120px]" />
         </div>
 
         <div
           ref={ref}
-          className="max-w-3xl mx-auto px-4 sm:px-6 text-center opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          className="
+            relative
+            z-10
+            max-w-4xl
+            mx-auto
+            px-4
+            sm:px-6
+            text-center
+            opacity-0
+            translate-y-8
+            transition-all
+            duration-700
+            [&.animate-in]:opacity-100
+            [&.animate-in]:translate-y-0
+          "
         >
-          <span className="inline-block px-4 py-1.5 rounded-full bg-orange-500/15 border border-orange-500/25 text-orange-300 text-sm font-semibold mb-8 tracking-wide">
+          {/* Badge */}
+          <span className="inline-block px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm font-semibold tracking-wide mb-8">
             ⚡ REALITY CHECK
           </span>
-          <h2 className="text-4xl sm:text-6xl font-black text-white mb-8 leading-tight">
+
+          {/* Heading */}
+          <h2 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-8">
             You're{" "}
-            <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
               Not
             </span>{" "}
             the Problem.
           </h2>
 
-          <div className="space-y-5 mb-10">
+          {/* Cards */}
+          <div className="space-y-5 mb-12">
             {[
-              { bold: "You were never taught how to earn.", sub: "" },
-              { bold: "No one showed you what skills matter.", sub: "" },
-              { bold: "No one gave you a roadmap.", sub: "" },
-              { bold: "No one told you where to begin.", sub: "" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-left"
-              >
-                <div className="w-2 h-2 rounded-full bg-orange-400 flex-shrink-0" />
-                <p className="text-gray-300 text-base sm:text-lg">{item.bold}</p>
-              </div>
-            ))}
+              "You were never taught how to earn.",
+              "No one showed you what skills matter.",
+              "No one gave you a roadmap.",
+              "No one told you where to begin.",
+            ].map(
+              (item, i) => (
+                <div
+                  key={i}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[28px]
+                    border
+                    border-white/10
+                    bg-white/[0.03]
+                    backdrop-blur-xl
+                    p-5
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:border-orange-400/30
+                  "
+                >
+                  {/* Hover Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition duration-500" />
+
+                  <div className="relative z-10 flex items-center gap-4 text-left">
+                    <div className="w-3 h-3 rounded-full bg-gradient-to-r from-orange-400 to-blue-400 flex-shrink-0" />
+
+                    <p className="text-gray-300 text-base sm:text-lg">
+                      {item}
+                    </p>
+                  </div>
+                </div>
+              )
+            )}
           </div>
 
-          <div className="p-8 rounded-3xl bg-gradient-to-br from-orange-500/15 to-amber-500/5 border border-orange-500/25">
-            <p className="text-xl sm:text-2xl font-bold text-white leading-relaxed">
+          {/* Quote Box */}
+          <div className="relative overflow-hidden rounded-[32px] border border-orange-500/20 bg-white/[0.03] backdrop-blur-xl p-6 sm:p-8">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10" />
+
+            <p className="relative z-10 text-xl sm:text-2xl font-bold text-white leading-relaxed">
               You stayed confused{" "}
-              <span className="text-orange-400">not because you can't do it</span>
+              <span className="text-orange-400">
+                not because you
+                can't do it
+              </span>
               <br />
               But because{" "}
-              <span className="text-orange-400">no one simplified it for you.</span>
+              <span className="text-blue-400">
+                no one simplified
+                it for you.
+              </span>
             </p>
           </div>
-        </div>
 
-        {/* CTA */}
-        <div className="text-center mt-10 ">
-          
-              <button onClick={() => setOpen(true)} className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
-                👉 Start Your Journey Today
-              </button>
-              <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+          {/* CTA */}
+          <div className="mt-12">
+            <button
+              onClick={() =>
+                setOpen(true)
+              }
+              className="
+                relative
+                overflow-hidden
+                px-8
+                sm:px-10
+                py-4
+                rounded-full
+                text-white
+                font-semibold
+                text-base
+                sm:text-lg
+                bg-gradient-to-r
+                from-orange-500
+                via-[#ff7b00]
+                to-blue-600
+                shadow-[0_10px_40px_rgba(255,115,0,0.35)]
+                transition-all
+                duration-300
+                hover:scale-105
+              "
+            >
+              <span className="relative z-10">
+                👉 Start Your
+                Journey Today
+              </span>
 
+              <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition" />
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* About / Coach Section */}
-      <section id="about" className="relative py-24 bg-[#080808] overflow-hidden">
-        <div className="absolute right-0 top-0 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* ABOUT SECTION */}
+      <section
+        id="about"
+        className="relative overflow-hidden bg-[#050505] py-16 sm:py-24"
+      >
+        {/* Glow */}
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-orange-500/10 blur-[140px] rounded-full pointer-events-none" />
+
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
 
         <div
           ref={aboutRef}
-          className="max-w-6xl mx-auto px-4 sm:px-6 opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          className="
+            relative
+            z-10
+            max-w-7xl
+            mx-auto
+            px-4
+            sm:px-6
+            opacity-0
+            translate-y-8
+            transition-all
+            duration-700
+            [&.animate-in]:opacity-100
+            [&.animate-in]:translate-y-0
+          "
         >
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Image placeholder / visual */}
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            {/* IMAGE */}
             <div className="relative">
-              <div className="relative w-full max-w-md mx-auto lg:mx-0">
-                {/* Decorative frame */}
-                <div className="absolute -inset-4 bg-gradient-to-br from-orange-500/20 to-amber-500/5 rounded-3xl blur-xl" />
-                <div className="relative rounded-2xl overflow-hidden border border-orange-500/20 aspect-[4/5]">
-  <img
-    src="/IMG_4401.JPG.jpeg"
-    alt="Kunal Patil"
-    className="w-full h-full object-cover"
-  />
+              <div className="relative max-w-md mx-auto lg:mx-0">
+                {/* Outer Glow */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-orange-500/20 to-blue-500/10 rounded-[40px] blur-2xl" />
 
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
+                  <img
+                    src="/IMG_4401.JPG.jpeg"
+                    alt="Kunal Patil"
+                    className="w-full aspect-[4/5] object-cover"
+                  />
 
-  {/* Floating badges */}
-  <div className="absolute top-6 right-6 px-3 py-1.5 bg-orange-500/90 rounded-full text-white text-xs font-bold shadow-lg">
-    ✓ Verified Coach
-  </div>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
-  <div className="absolute bottom-6 left-6 px-4 py-2 bg-black/70 backdrop-blur-sm rounded-xl text-white text-xs border border-white/10">
-    <span className="text-orange-400 font-bold">800+</span> Students
-  </div>
-</div>
+                  {/* Badge */}
+                  <div className="absolute top-5 right-5 px-4 py-2 rounded-full bg-orange-500/90 text-white text-xs font-bold shadow-lg">
+                    ✓ Verified Coach
+                  </div>
+
+                  {/* Students */}
+                  <div className="absolute bottom-5 left-5 px-4 py-2 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 text-white text-sm">
+                    <span className="text-orange-400 font-bold">
+                      800+
+                    </span>{" "}
+                    Students
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Text content */}
+            {/* CONTENT */}
             <div>
-              <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase mb-3 block">
-                Meet Your Mentor
+              <span className="inline-block px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm font-semibold tracking-wide mb-6">
+                🚀 Meet Your Mentor
               </span>
-              <h2 className="text-3xl sm:text-5xl font-black text-white mb-6 leading-tight">
+
+              <h2 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-6">
                 Hi, I'm{" "}
-                <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
                   Kunal Patil
                 </span>
               </h2>
+
               <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                I started from zero. No connections, no fancy degree — just a burning desire to build something on my own.
-              </p>
-              <p className="text-gray-400 leading-relaxed mb-8">
-                Today I've helped <span className="text-white font-semibold">800+ people</span> learn real digital skills and start earning online. My mission is simple: give you the roadmap I wish I had when I started.
+                I started from zero.
+                No connections, no
+                fancy degree —
+                just a burning
+                desire to build
+                something on my
+                own.
               </p>
 
-              {/* Stats */}
-              <div className="grid grid-cols-3 sm:gap-4 mb-8">
-                {stats.map((s, i) => (
-                  <div key={i} className="p-4 sm:rounded-2xl bg-white/[0.04] border border-white/[0.07] text-center">
-                    <div className="text-[16px] sm:text-2xl font-black text-orange-400 mb-1">{s.num}</div>
-                    <div className="text-gray-500 sm:text-xs text-[12px]">{s.label}</div>
-                  </div>
-                ))}
+              <p className="text-gray-400 leading-relaxed mb-10 text-base sm:text-lg">
+                Today I've helped{" "}
+                <span className="text-white font-semibold">
+                  800+ people
+                </span>{" "}
+                learn real digital
+                skills and start
+                earning online.
+                My mission is simple:
+                give you the roadmap
+                I wish I had when I
+                started.
+              </p>
+
+              {/* STATS */}
+              <div className="grid grid-cols-3 gap-4 mb-10">
+                {stats.map(
+                  (s, i) => (
+                    <div
+                      key={i}
+                      className="
+                        relative
+                        overflow-hidden
+                        rounded-[24px]
+                        border
+                        border-white/10
+                        bg-white/[0.03]
+                        backdrop-blur-xl
+                        p-4
+                        text-center
+                      "
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10" />
+
+                      <div className="relative z-10">
+                        <div className="text-lg sm:text-3xl font-black text-orange-400 mb-1">
+                          {s.num}
+                        </div>
+
+                        <div className="text-gray-500 text-[11px] sm:text-sm">
+                          {s.label}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
               </div>
 
+              {/* TAGS */}
               <div className="flex flex-wrap gap-3">
-                {["💻 Freelancer", "🎯 Skills Coach", "🚀 Entrepreneur"].map((tag, i) => (
-                  <span key={i} className="px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm font-medium">
+                {[
+                  "💻 Freelancer",
+                  "🎯 Skills Coach",
+                  "🚀 Entrepreneur",
+                ].map((tag, i) => (
+                  <span
+                    key={i}
+                    className="
+                      px-5
+                      py-2.5
+                      rounded-full
+                      bg-white/[0.04]
+                      border
+                      border-orange-500/20
+                      text-orange-300
+                      text-sm
+                      font-medium
+                      backdrop-blur-xl
+                    "
+                  >
                     {tag}
                   </span>
                 ))}
@@ -162,6 +363,14 @@ export default function TruthAbout() {
             </div>
           </div>
         </div>
+
+        {/* Popup */}
+        <LeadPopup
+          isOpen={open}
+          onClose={() =>
+            setOpen(false)
+          }
+        />
       </section>
     </>
   );

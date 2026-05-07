@@ -1,221 +1,527 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
+import {
+  FaArrowRight,
+  FaCheckCircle,
+  FaWhatsapp,
+} from "react-icons/fa";
 import LeadPopup from "./leadpopup";
 
 export default function ObjMissionCTA() {
-      const [open, setOpen] = useState(false);
+  const [open, setOpen] =
+    useState(false);
 
-  const objRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+  const objRef =
+    useRef<HTMLDivElement>(null);
+
+  const missionRef =
+    useRef<HTMLDivElement>(null);
+
+  const joinRef =
+    useRef<HTMLDivElement>(null);
+
+  const ctaRef =
+    useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const els = [objRef.current, ctaRef.current];
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) entry.target.classList.add("animate-in"); },
-      { threshold: 0.1 }
-    );
-    els.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
+    const sections = [
+      objRef.current,
+      missionRef.current,
+      joinRef.current,
+      ctaRef.current,
+    ];
+
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (
+            entry.isIntersecting
+          ) {
+            entry.target.classList.add(
+              "show"
+            );
+          }
+        },
+        {
+          threshold: 0.15,
+        }
+      );
+
+    sections.forEach((el) => {
+      if (el)
+        observer.observe(el);
+    });
+
+    return () =>
+      observer.disconnect();
   }, []);
 
   const objections = [
-    { q: "What if I don't have any skills?", a: "Perfect. That's exactly where you start. We build from zero." },
-    { q: "What if I don't have time?", a: "You don't need hours. You need just 1-2 hours of consistency." },
-    { q: "What if I fail?", a: "You only fail when you don't start. Action is the only cure." },
-    { q: "What if I'm not confident?", a: "Confidence comes after you begin. Not before." },
+    {
+      q: "What if I don't have any skills?",
+      a: "Perfect. We'll build everything from zero.",
+    },
+    {
+      q: "What if I don't have enough time?",
+      a: "1-2 focused hours daily is enough to start.",
+    },
+    {
+      q: "What if I fail?",
+      a: "The biggest failure is never starting.",
+    },
+    {
+      q: "What if I'm not confident?",
+      a: "Confidence comes after action.",
+    },
   ];
 
   const joinSteps = [
-    { icon: "⚡", title: "Step-by-step guidance", desc: "Clear roadmap from day one" },
-    { icon: "🎓", title: "Beginner-friendly learning", desc: "No jargon. No confusion." },
-    { icon: "💼", title: "Real-world skill application", desc: "Learn by doing, not just watching" },
-    { icon: "🤝", title: "Support system", desc: "You're not doing this alone" },
+    {
+      icon: "⚡",
+      title:
+        "Step-by-step Roadmap",
+      desc: "Clear path from beginner to earning.",
+    },
+    {
+      icon: "🎓",
+      title:
+        "Beginner Friendly",
+      desc: "Simple learning with zero confusion.",
+    },
+    {
+      icon: "💼",
+      title:
+        "Practical Skills",
+      desc: "Learn real-world digital skills.",
+    },
+    {
+      icon: "🤝",
+      title: "Community Support",
+      desc: "You're never alone in the journey.",
+    },
   ];
 
-  const whatsappUrl = `https://wa.me/918643071462?text=Hi%20Kunal%2C%20I%20want%20to%20start%20my%20journey%20with%20you!`;
+  const whatsappUrl =
+    "https://wa.me/918643071462?text=Hi%20Kunal%2C%20I%20want%20to%20start%20my%20journey%20with%20you!";
 
   return (
     <>
-      {/* Objection Handling */}
-      <section className="relative md:py-24 py-12 bg-[#0d0d0d] overflow-hidden">
+      {/* OBJECTION SECTION */}
+      <section className="relative overflow-hidden bg-[#050505] py-20 sm:py-28">
+        {/* GLOW */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[140px]" />
+
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px]" />
+
         <div
           ref={objRef}
-          className="max-w-4xl mx-auto px-4 sm:px-6 opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          className="
+            relative
+            z-10
+            max-w-5xl
+            mx-auto
+            px-4
+            sm:px-6
+            opacity-0
+            translate-y-10
+            transition-all
+            duration-700
+            [&.show]:opacity-100
+            [&.show]:translate-y-0
+          "
         >
           <div className="text-center mb-14">
-            <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">No More Excuses</span>
-            <h2 className="mt-3 text-3xl sm:text-5xl font-black text-white">
-              "But what if…"
+            <span className="inline-block px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm font-semibold tracking-wide mb-6">
+              NO MORE EXCUSES
+            </span>
+
+            <h2 className="text-4xl sm:text-6xl font-black text-white leading-tight">
+              Your Mind Says
+              <span className="block bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
+                “What If?”
+              </span>
             </h2>
           </div>
 
-          <div className="space-y-4">
-            {objections.map((o, i) => (
-              <div
-                key={i}
-                className="group p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/30 hover:bg-orange-500/5 transition-all duration-300"
-              >
-                <div className="flex items-start gap-4">
-                  <span className="text-red-400 text-xl mt-0.5 flex-shrink-0">?</span>
-                  <div>
-                    <p className="text-gray-300 font-semibold mb-2 italic">"{o.q}"</p>
-                    <div className="flex items-start gap-2">
-                      <span className="text-orange-400 font-bold flex-shrink-0">→</span>
-                      <p className="text-orange-300">{o.a}</p>
+          <div className="grid md:grid-cols-2 gap-5">
+            {objections.map(
+              (item, i) => (
+                <div
+                  key={i}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[30px]
+                    border
+                    border-white/10
+                    bg-white/[0.03]
+                    backdrop-blur-xl
+                    p-6
+                    transition-all
+                    duration-500
+                    hover:border-orange-400/30
+                    hover:-translate-y-1
+                  "
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition duration-500" />
+
+                  <div className="relative z-10">
+                    <div className="flex items-start gap-4 mb-5">
+                      <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 text-xl flex-shrink-0">
+                        ?
+                      </div>
+
+                      <h3 className="text-white text-lg font-bold leading-relaxed">
+                        {item.q}
+                      </h3>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="mt-1 text-orange-400">
+                        <FaArrowRight />
+                      </div>
+
+                      <p className="text-gray-300 leading-relaxed">
+                        {item.a}
+                      </p>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="relative md:py-24 py-12 bg-[#080808] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-orange-500/8 rounded-full blur-[120px]" />
+      {/* MISSION SECTION */}
+      <section className="relative overflow-hidden bg-[#070707] py-20 sm:py-28">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[700px] h-[400px] bg-orange-500/10 rounded-full blur-[140px]" />
         </div>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase mb-6 block">Our Purpose</span>
-          <h2 className="text-3xl sm:text-5xl font-black text-white mb-8">
-            This Is{" "}
-            <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-              Bigger
-            </span>{" "}
-            Than Money
+
+        <div
+          ref={missionRef}
+          className="
+            relative
+            z-10
+            max-w-4xl
+            mx-auto
+            px-4
+            sm:px-6
+            text-center
+            opacity-0
+            translate-y-10
+            transition-all
+            duration-700
+            [&.show]:opacity-100
+            [&.show]:translate-y-0
+          "
+        >
+          <span className="inline-block px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-semibold tracking-wide mb-8">
+            OUR PURPOSE
+          </span>
+
+          <h2 className="text-4xl sm:text-6xl font-black text-white leading-tight mb-10">
+            This Is Bigger
+            <span className="block bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
+              Than Money
+            </span>
           </h2>
 
-          <div className="space-y-4 mb-10">
+          <div className="space-y-5 mb-12">
             {[
               "Not asking before spending.",
-              "Not depending on anyone.",
-              "Not settling for less.",
-            ].map((t, i) => (
-              <div key={i} className="flex items-center justify-center gap-3 text-gray-400 text-lg">
-                <span className="w-2 h-2 rounded-full bg-orange-400 flex-shrink-0" />
-                {t}
+              "Not depending on others.",
+              "Not settling for average life.",
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center gap-4 text-gray-300 text-lg"
+              >
+                <div className="w-3 h-3 rounded-full bg-gradient-to-r from-orange-400 to-blue-400" />
+
+                <span>{item}</span>
               </div>
             ))}
           </div>
 
-          <p className="text-xl sm:text-2xl text-white font-bold leading-relaxed">
-            This is about building a life
-            <br />
-            where you have{" "}
-            <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-              choices.
-            </span>
-          </p>
-          <p className="mt-4 text-gray-500 text-lg">And that starts with skills.</p>
+          <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8 sm:p-10">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10" />
+
+            <p className="relative z-10 text-2xl sm:text-4xl font-black text-white leading-relaxed">
+              Build a life where
+              <span className="block bg-gradient-to-r from-orange-400 to-blue-400 bg-clip-text text-transparent">
+                you finally have choices.
+              </span>
+            </p>
+
+            <p className="relative z-10 mt-5 text-gray-400 text-lg">
+              And it all starts
+              with learning the
+              right skills.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* What Happens After Joining */}
-      <section className="relative md:py-24 py-12 bg-[#0a0a0a] overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">After You Join</span>
-            <h2 className="mt-3 text-3xl sm:text-4xl font-black text-white">
+      {/* JOIN STEPS */}
+      <section className="relative overflow-hidden bg-[#050505] py-20 sm:py-28">
+        <div
+          ref={joinRef}
+          className="
+            relative
+            z-10
+            max-w-7xl
+            mx-auto
+            px-4
+            sm:px-6
+            opacity-0
+            translate-y-10
+            transition-all
+            duration-700
+            [&.show]:opacity-100
+            [&.show]:translate-y-0
+          "
+        >
+          <div className="text-center mb-14">
+            <span className="inline-block px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm font-semibold tracking-wide mb-6">
+              AFTER YOU JOIN
+            </span>
+
+            <h2 className="text-4xl sm:text-5xl font-black text-white">
               What Happens Next?
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {joinSteps.map((s, i) => (
-              <div key={i} className="relative p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/25 transition-all duration-300 group text-center">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white text-xs font-bold">
-                  {i + 1}
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {joinSteps.map(
+              (step, i) => (
+                <div
+                  key={i}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    rounded-[30px]
+                    border
+                    border-white/10
+                    bg-white/[0.03]
+                    backdrop-blur-xl
+                    p-6
+                    transition-all
+                    duration-500
+                    hover:border-orange-400/30
+                    hover:-translate-y-1
+                  "
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition duration-500" />
+
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-orange-500 to-blue-600 flex items-center justify-center text-white font-bold mb-5 shadow-xl">
+                      {i + 1}
+                    </div>
+
+                    <div className="text-4xl mb-5">
+                      {step.icon}
+                    </div>
+
+                    <h3 className="text-white text-lg font-bold mb-3">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="text-3xl mb-3 mt-2">{s.icon}</div>
-                <h3 className="text-white font-bold mb-2 text-sm">{s.title}</h3>
-                <p className="text-gray-600 text-xs">{s.desc}</p>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section id="cta" className="relative md:py-24 py-12 bg-[#080808] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-orange-500/12 rounded-full blur-[130px]" />
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/40 to-transparent" />
+      {/* FINAL CTA */}
+      <section className="relative overflow-hidden bg-[#070707] py-20 sm:py-28">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[800px] h-[500px] bg-orange-500/10 rounded-full blur-[150px]" />
         </div>
 
         <div
           ref={ctaRef}
-          className="max-w-3xl mx-auto px-4 sm:px-6 text-center opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+          className="
+            relative
+            z-10
+            max-w-4xl
+            mx-auto
+            px-4
+            sm:px-6
+            text-center
+            opacity-0
+            translate-y-10
+            transition-all
+            duration-700
+            [&.show]:opacity-100
+            [&.show]:translate-y-0
+          "
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-sm font-medium mb-8">
-            <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
-            Don't stay stuck for another 6 months thinking "I'll start soon"
+          <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 text-sm font-medium mb-10">
+            <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
+
+            Stop waiting for the
+            perfect moment.
           </div>
 
-          <h2 className="text-4xl sm:text-6xl font-black text-white mb-6 leading-tight">
-            You Don't Need to{" "}
-            <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-              Be Ready.
+          <h2 className="text-4xl sm:text-7xl font-black text-white leading-tight mb-8">
+            You Don't Need To
+            <span className="block bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
+              Feel Ready.
             </span>
           </h2>
-          <p className="text-gray-400 text-xl mb-10">
-            You just need to take the first step.
+
+          <p className="text-gray-400 text-lg sm:text-2xl leading-relaxed mb-12">
+            You only need the
+            courage to take your
+            first step.
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <a onClick={() => setOpen(true)}
-              className="group relative w-full cursor-pointer sm:w-auto sm:px-10 md:py-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-black md:text-xl text-[18px] rounded-full overflow-hidden shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-300"
+          {/* BUTTONS */}
+          <div className="flex flex-col sm:flex-row gap-5 justify-center mb-10">
+            <button
+              onClick={() =>
+                setOpen(true)
+              }
+              className="
+                group
+                relative
+                overflow-hidden
+                px-10
+                py-5
+                rounded-full
+                bg-gradient-to-r
+                from-orange-500
+                via-[#ff7b00]
+                to-blue-600
+                text-white
+                font-black
+                text-lg
+                shadow-[0_15px_50px_rgba(255,115,0,0.35)]
+                transition-all
+                duration-300
+                hover:scale-105
+              "
             >
-              <span className="relative z-10">👉 Start Your Journey Today</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </a>
+              <span className="relative z-10 flex items-center gap-3">
+                👉 Start Your Journey
+                <FaArrowRight className="group-hover:translate-x-1 transition" />
+              </span>
+            </button>
 
-            <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                px-8
+                py-5
+                rounded-full
+                border
+                border-white/10
+                bg-white/[0.03]
+                backdrop-blur-xl
+                text-white
+                font-semibold
+                text-lg
+                hover:bg-white/[0.05]
+                transition-all
+                duration-300
+              "
+            >
+              <span className="flex items-center gap-3">
+                <FaWhatsapp />
+                WhatsApp
+              </span>
+            </a>
           </div>
 
-          {/* Contact info */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-            <a href="mailto:workwithkunalpatil@gmail.com" className="flex items-center gap-2 hover:text-orange-400 transition-colors">
-              <span>📧</span> workwithkunalpatil@gmail.com
+          {/* CONTACT */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 text-gray-500 text-sm">
+            <a
+              href="mailto:workwithkunalpatil@gmail.com"
+              className="hover:text-orange-400 transition"
+            >
+              📧
+              workwithkunalpatil@gmail.com
             </a>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-orange-400 transition-colors">
-              <span>📱</span> +91 86430 71462
+
+            <div className="hidden sm:block w-1 h-1 rounded-full bg-gray-700" />
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-orange-400 transition"
+            >
+              📱 +91 86430 71462
             </a>
           </div>
         </div>
+
+        <LeadPopup
+          isOpen={open}
+          onClose={() =>
+            setOpen(false)
+          }
+        />
       </section>
 
-      {/* Footer */}
-      <footer className="relative py-10 bg-[#050505] border-t border-white/[0.05]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-gray-500 md:text-lg text-xl">
-                Kunal <span className="text-orange-400">Patil</span>
-              </span>
+      {/* FOOTER */}
+      <footer className="relative overflow-hidden bg-[#040404] border-t border-white/5 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-2xl font-black text-white">
+                Kunal
+                <span className="text-orange-400">
+                  {" "}
+                  Patil
+                </span>
+              </h3>
             </div>
 
-            <p className="text-gray-600 text-sm text-center italic">
-              "Your future doesn't change by waiting. It changes when you decide."
+            <p className="text-gray-500 text-center italic max-w-xl">
+              “Your future changes
+              the moment you decide
+              to stop waiting.”
             </p>
 
-            <a
-              onClick={() => setOpen(true)}
-              className="px-5 py-2.5 cursor-pointer bg-orange-500/15 border border-orange-500/30 text-orange-400 text-sm font-semibold rounded-full hover:bg-orange-500/25 transition-all"
+            <button
+              onClick={() =>
+                setOpen(true)
+              }
+              className="
+                px-6
+                py-3
+                rounded-full
+                bg-orange-500/10
+                border
+                border-orange-500/20
+                text-orange-300
+                font-semibold
+                hover:bg-orange-500/20
+                transition-all
+                duration-300
+              "
             >
-              👉 Start Now
-            </a>
-             <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+              👉 Join Now
+            </button>
           </div>
-          <p className="text-center text-gray-700 text-xs mt-6">
-            © 2025 Kunal Patil. All rights reserved.
-          </p>
+
+          <div className="mt-8 pt-8 border-t border-white/5 text-center text-gray-700 text-sm">
+            © 2025 Kunal Patil.
+            All rights reserved.
+          </div>
         </div>
       </footer>
     </>

@@ -6,6 +6,7 @@ import TruthAbout from "./components/truthabout";
 import VideoSkills from "./components/videoskills";
 import TransformProof from "./components/transformproff";
 import ObjMissionCTA from "./components/objmissioncta";
+import LearningSection from "./components/learningsection";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Problem />
       <TruthAbout />
+      <LearningSection/>
       <VideoSkills />
       <TransformProof />
       <ObjMissionCTA />

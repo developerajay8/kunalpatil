@@ -1,20 +1,39 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import LeadPopup from "./leadpopup";
 
 export default function Problem() {
   const ref = useRef<HTMLDivElement>(null);
-  const [open, setOpen] = useState(false);
+
+  const [open, setOpen] =
+    useState(false);
 
   useEffect(() => {
     const el = ref.current;
+
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("animate-in"); },
-      { threshold: 0.1 }
-    );
+
+    const observer =
+      new IntersectionObserver(
+        ([entry]) => {
+          if (
+            entry.isIntersecting
+          ) {
+            el.classList.add(
+              "animate-in"
+            );
+          }
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
     observer.observe(el);
-    return () => observer.disconnect();
+
+    return () =>
+      observer.disconnect();
   }, []);
 
   const thoughts = [
@@ -25,85 +44,202 @@ export default function Problem() {
   ];
 
   const painPoints = [
-    { icon: "💭", text: "You want to earn… but don't know where to start." },
-    { icon: "📱", text: "You save reels about freelancing… but never begin." },
-    { icon: "👀", text: "You feel like others are moving ahead… you're stuck." },
-    { icon: "😔", text: "You keep doubting yourself every single day." },
+    {
+      icon: "💭",
+      text: "You want to earn… but don't know where to start.",
+    },
+
+    {
+      icon: "📱",
+      text: "You save reels about freelancing… but never begin.",
+    },
+
+    {
+      icon: "👀",
+      text: "You feel like others are moving ahead… you're stuck.",
+    },
+
+    {
+      icon: "😔",
+      text: "You keep doubting yourself every single day.",
+    },
   ];
 
   return (
-    <section className="relative md:py-24 py-12 bg-[#0a0a0a] overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-orange-500/0 via-orange-500/40 to-orange-500/0" />
+    <section className="relative overflow-hidden bg-[#070707] py-16 sm:py-24">
+      {/* Background Glow */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-orange-500/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+
+      {/* Top Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-orange-500/0 via-orange-500/50 to-transparent" />
 
       <div
         ref={ref}
-        className="max-w-4xl mx-auto px-4 sm:px-6 opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        className="
+          relative
+          z-10
+          max-w-6xl
+          mx-auto
+          px-4
+          sm:px-6
+          opacity-0
+          translate-y-8
+          transition-all
+          duration-700
+          [&.animate-in]:opacity-100
+          [&.animate-in]:translate-y-0
+        "
       >
-        {/* Label */}
-        <div className="text-center mb-14">
-          <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">Sound Familiar?</span>
-          <h2 className="mt-3 text-3xl sm:text-5xl font-black text-white leading-tight">
+        {/* Heading */}
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <span className="inline-block px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm font-semibold tracking-wide mb-6">
+            ⚠ Reality Check
+          </span>
+
+          <h2 className="text-4xl sm:text-6xl font-black leading-tight text-white">
             This Might Feel{" "}
-            <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
               Uncomfortably
             </span>{" "}
-            Familiar…
+            Familiar...
           </h2>
-        </div>
 
-        {/* Pain points */}
-        <div className="grid sm:grid-cols-2 gap-4 mb-14">
-          {painPoints.map((p, i) => (
-            <div
-              key={i}
-              className="group flex items-start gap-4 sm:p-6 p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/30 hover:bg-orange-500/5 transition-all duration-300"
-              style={{ animationDelay: `${i * 0.1}s` }}
-            >
-              <span className="text-2xl mt-0.5">{p.icon}</span>
-              <p className="text-gray-300 text-base leading-relaxed">{p.text}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Inner voice section */}
-        <div className="relative md:p-8 p-4 rounded-3xl bg-gradient-to-br from-red-900/20 to-orange-900/10 border border-red-500/20">
-          <div className="absolute sm:-top-3 -top-6 sm:left-8 left-1 px-4 py-1 bg-red-500/20 border border-red-500/30 rounded-full text-red-400 text-xs font-semibold tracking-wide">
-            THE INNER VOICE THAT HOLDS YOU BACK
-          </div>
-          <div className="grid sm:grid-cols-2 gap-3 mt-2">
-            {thoughts.map((t, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 p-4 rounded-xl bg-black/30 border border-white/5"
-              >
-                <span className="text-red-400 text-lg flex-shrink-0">"</span>
-                <span className="text-gray-400 italic">{t}</span>
-                <span className="text-red-400 text-lg flex-shrink-0">"</span>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-center text-gray-400 text-base">
-            And the worst part? You start{" "}
-            <span className="text-orange-400 font-semibold">doubting yourself.</span>
+          <p className="mt-6 text-lg sm:text-xl text-gray-400 leading-relaxed">
+            Most people stay stuck
+            because they never get
+            the right direction.
           </p>
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-10 ">
-          
-              <button onClick={() => setOpen(true)} className="bg-[#f35113] cursor-pointer text-white sm:px-8 px-4 sm:py-4 py-3 rounded-full sm:text-lg text-[16px] font-medium shadow-lg hover:scale-105 transition">
-                👉 Start Your Journey Today
-              </button>
+        {/* Pain Points */}
+        <div className="grid sm:grid-cols-2 gap-5 mb-16">
+          {painPoints.map(
+            (p, i) => (
+              <div
+                key={i}
+                className="
+                  group
+                  relative
+                  overflow-hidden
+                  rounded-[28px]
+                  border
+                  border-white/10
+                  bg-white/[0.03]
+                  backdrop-blur-xl
+                  p-5
+                  sm:p-6
+                  transition-all
+                  duration-500
+                  hover:-translate-y-2
+                  hover:border-orange-400/30
+                "
+              >
+                {/* Hover Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition duration-500" />
 
-             
+                <div className="relative z-10 flex items-start gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500/20 to-blue-500/20 border border-white/10 flex items-center justify-center text-2xl flex-shrink-0">
+                    {p.icon}
+                  </div>
 
+                  <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
+                    {p.text}
+                  </p>
+                </div>
+              </div>
+            )
+          )}
         </div>
 
+        {/* Inner Voice */}
+        <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-5 sm:p-8">
+          {/* Glow */}
+          <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-orange-500/10" />
+
+          {/* Badge */}
+          <div className="absolute top-5 left-5 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-300 text-xs font-semibold tracking-wide">
+            THE INNER VOICE
+          </div>
+
+          <div className="relative z-10 pt-12">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {thoughts.map(
+                (t, i) => (
+                  <div
+                    key={i}
+                    className="
+                      rounded-2xl
+                      border
+                      border-white/10
+                      bg-black/30
+                      px-5
+                      py-4
+                      text-gray-300
+                      italic
+                      transition
+                      hover:border-orange-400/20
+                    "
+                  >
+                    "{t}"
+                  </div>
+                )
+              )}
+            </div>
+
+            <p className="mt-8 text-center text-gray-400 text-base sm:text-lg leading-relaxed">
+              And slowly...
+              you start{" "}
+              <span className="text-orange-400 font-semibold">
+                doubting yourself.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-14">
+          <button
+            onClick={() =>
+              setOpen(true)
+            }
+            className="
+              relative
+              overflow-hidden
+              px-8
+              sm:px-10
+              py-4
+              rounded-full
+              text-white
+              font-semibold
+              text-base
+              sm:text-lg
+              bg-gradient-to-r
+              from-orange-500
+              via-[#ff7b00]
+              to-blue-600
+              shadow-[0_10px_40px_rgba(255,115,0,0.35)]
+              transition-all
+              duration-300
+              hover:scale-105
+            "
+          >
+            <span className="relative z-10">
+              👉 Start Your Journey
+              Today
+            </span>
+
+            <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition" />
+          </button>
+        </div>
       </div>
-         <LeadPopup
+
+      <LeadPopup
         isOpen={open}
-        onClose={() => setOpen(false)}
+        onClose={() =>
+          setOpen(false)
+        }
       />
     </section>
   );
