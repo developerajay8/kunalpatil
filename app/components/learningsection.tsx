@@ -14,7 +14,7 @@ const founders = [
   {
     name: "Arjun Deshpande",
     role: "Founder of Generic Aadhaar",
-    image: "image.png",
+    image: "/image.png",
     caption:
       "Known for making affordable medicines more accessible across India.",
   },
