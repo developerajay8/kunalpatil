@@ -6,7 +6,7 @@ const founders = [
   {
     name: "Anubhav Dubey",
     role: "Founder of Chai Sutta Bar",
-    image: "/image.png",
+    image: "/founders/anubhav.jpg",
     caption:
       "Building one of India’s most recognized café franchise brands.",
   },
@@ -14,7 +14,7 @@ const founders = [
   {
     name: "Arjun Deshpande",
     role: "Founder of Generic Aadhaar",
-    image: "/image.png",
+    image: "/founders/arjun-deshpande.jpg",
     caption:
       "Known for making affordable medicines more accessible across India.",
   },
@@ -22,7 +22,7 @@ const founders = [
   {
     name: "Arjun Vaidya",
     role: "Founder of Dr. Vaidya’s",
-    image: "/image.png",
+    image: "/founders/arjun-vaidya.jpg",
     caption:
       "Building a modern Ayurveda brand for the new generation.",
   },
