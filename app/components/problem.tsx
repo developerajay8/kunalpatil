@@ -1,8 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import LeadPopup from "./leadpopup";
 
 export default function Problem() {
   const ref = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -90,12 +92,19 @@ export default function Problem() {
         {/* CTA */}
         <div className="text-center mt-10 ">
           
-              <button className="bg-[#f35113] cursor-pointer text-white sm:px-8 px-4 sm:py-4 py-3 rounded-full sm:text-lg text-[16px] font-medium shadow-lg hover:scale-105 transition">
+              <button onClick={() => setOpen(true)} className="bg-[#f35113] cursor-pointer text-white sm:px-8 px-4 sm:py-4 py-3 rounded-full sm:text-lg text-[16px] font-medium shadow-lg hover:scale-105 transition">
                 👉 Start Your Journey Today
               </button>
 
+             
+
         </div>
+
       </div>
+         <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
     </section>
   );
 }

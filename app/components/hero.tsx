@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import LeadPopup from "./leadpopup";
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -37,6 +38,8 @@ export default function Hero() {
       }
     }
   };
+
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -116,13 +119,13 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:mb-10 mb-5">
-          <button
-            onClick={() => scrollTo("#cta")}
+          <button  onClick={() => setOpen(true)}  
             className="group relative sm:px-8 px-4 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-lg rounded-full overflow-hidden shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300"
           >
             <span className="relative z-10">👉 Start Your Journey Now</span>
             <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </button>
+           
           <button
             onClick={() => scrollTo("#video")}
             className="flex items-center gap-3 px-6 py-4 text-gray-300 hover:text-orange-400 transition-colors group"
@@ -134,6 +137,11 @@ export default function Hero() {
           </button>
         </div>
 
+        <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
+
         {/* Trust indicators */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
           <span className="flex items-center gap-2"><span className="text-green-400">✓</span> No Experience Needed</span>
@@ -143,8 +151,15 @@ export default function Hero() {
 
         
 
+        
+
 
       </div>
+
+      <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
 
       
 

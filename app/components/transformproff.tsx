@@ -1,9 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import LeadPopup from "./leadpopup";
 
 export default function TransformProof() {
   const transRef = useRef<HTMLDivElement>(null);
   const proofRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const els = [transRef.current, proofRef.current];
@@ -97,9 +99,14 @@ export default function TransformProof() {
         {/* CTA */}
         <div className="text-center mt-10">
           
-              <button className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
+              <button onClick={() => setOpen(true)} className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
                 👉 Start Your Journey Today
               </button>
+
+              <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
 
         </div>
       </section>
@@ -168,9 +175,14 @@ export default function TransformProof() {
         {/* CTA */}
         <div className="text-center mt-10">
           
-              <button className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
+              <button  onClick={() => setOpen(true)} className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
                 👉 Start Your Journey Today
               </button>
+
+              <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
 
         </div>
       </section>

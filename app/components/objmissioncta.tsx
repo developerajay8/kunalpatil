@@ -1,7 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import LeadPopup from "./leadpopup";
 
 export default function ObjMissionCTA() {
+      const [open, setOpen] = useState(false);
+
   const objRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
@@ -160,15 +163,17 @@ export default function ObjMissionCTA() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative w-full sm:w-auto sm:px-10 md:py-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-black md:text-xl text-[18px] rounded-full overflow-hidden shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-300"
+            <a onClick={() => setOpen(true)}
+              className="group relative w-full cursor-pointer sm:w-auto sm:px-10 md:py-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-black md:text-xl text-[18px] rounded-full overflow-hidden shadow-2xl shadow-orange-500/40 hover:shadow-orange-500/60 hover:scale-105 transition-all duration-300"
             >
               <span className="relative z-10">👉 Start Your Journey Today</span>
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
+
+            <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
           </div>
 
           {/* Contact info */}
@@ -198,13 +203,15 @@ export default function ObjMissionCTA() {
             </p>
 
             <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-5 py-2.5 bg-orange-500/15 border border-orange-500/30 text-orange-400 text-sm font-semibold rounded-full hover:bg-orange-500/25 transition-all"
+              onClick={() => setOpen(true)}
+              className="px-5 py-2.5 cursor-pointer bg-orange-500/15 border border-orange-500/30 text-orange-400 text-sm font-semibold rounded-full hover:bg-orange-500/25 transition-all"
             >
               👉 Start Now
             </a>
+             <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
           </div>
           <p className="text-center text-gray-700 text-xs mt-6">
             © 2025 Kunal Patil. All rights reserved.

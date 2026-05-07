@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
+import LeadPopup from "./leadpopup";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -25,12 +27,9 @@ export default function Header() {
   };
 
   return (
+    <>
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-orange-500/20 py-3"
-          : "bg-transparent py-5"
-      }`}
+      className={"bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-orange-500/20 py-3"}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo */}
@@ -53,8 +52,8 @@ export default function Header() {
             </button>
           ))}
           <button
-            onClick={() => scrollTo("#cta")}
-            className="ml-3 px-5 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-orange-500/40 hover:scale-105 transition-all duration-200"
+              onClick={() => setOpen(true)} 
+            className="ml-3 px-5 py-2.5 cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold rounded-full hover:shadow-lg hover:shadow-orange-500/40 hover:scale-105 transition-all duration-200"
           >
             Start Now →
           </button>
@@ -85,14 +84,23 @@ export default function Header() {
               {link.label}
             </button>
           ))}
-          <button
-            onClick={() => scrollTo("#cta")}
-            className="w-full mt-2 px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full"
+          <button onClick={() => setOpen(true)} 
+            
+            className="w-full mt-2 cursor-pointer px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-semibold rounded-full"
           >
             Start Now →
           </button>
+
+          
         </div>
       )}
+      
     </header>
+    <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
+
+      </>
   );
 }
