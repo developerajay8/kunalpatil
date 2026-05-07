@@ -119,12 +119,43 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:mb-10 mb-5">
-          <button  onClick={() => setOpen(true)}  
-            className="group relative sm:px-8 px-4 py-4 bg-gradient-to-r from-orange-500 via-[#ff7b00] to-blue-600 text-white font-bold text-lg rounded-full overflow-hidden shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300"
+           <button
+            onClick={() =>
+              setOpen(true)
+            }
+            className="
+              relative
+              overflow-hidden
+              px-8
+              sm:px-10
+              py-4
+              rounded-full
+              text-white
+              font-semibold
+              text-base
+              sm:text-lg
+              bg-gradient-to-r
+              from-orange-500
+              via-[#ff7b00]
+              to-blue-600
+              shadow-[0_10px_40px_rgba(255,115,0,0.35)]
+              transition-all
+              duration-300
+              hover:scale-105
+            "
           >
-            <span className="relative z-10">👉 Start Your Journey Now</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span className="relative z-10">
+              👉 Start Your Journey
+              Today
+            </span>
+
+            <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition" />
           </button>
+
+          <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
            
           <button
             onClick={() => scrollTo("#video")}
@@ -137,10 +168,7 @@ export default function Hero() {
           </button>
         </div>
 
-        <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+        
 
         {/* Trust indicators */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">

@@ -109,7 +109,7 @@ export default function LeadPopup({
     try {
       // WhatsApp Message
       const message = `
-🔥 New Lead
+🔥 Hii Kunal sir, I’m intrested in this work can you please share me the work details?
 
 👤 Full Name: ${form.fullName}
 📱 Mobile: ${form.mobile}
