@@ -290,28 +290,31 @@ export default function LeadPopup({
                 value="Student"
                 className="text-black"
               >
-                Student
+               Student 
+
+
+
               </option>
 
               <option
                 value="Working Professional"
                 className="text-black"
               >
-                Working Professional
+                Housewife 
               </option>
 
               <option
                 value="Business Owner"
                 className="text-black"
               >
-                Business Owner
+                Working professional 
               </option>
 
               <option
                 value="Freelancer"
                 className="text-black"
               >
-                Freelancer
+                Other
               </option>
             </select>
 

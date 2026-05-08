@@ -6,34 +6,32 @@
 import { useState } from "react";
 import { FaHeart, FaRegClock, FaShare } from "react-icons/fa";
 
-
 const videos = [
-    {
-        id: 1,
-        src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778058310/IMG_6174_pqzslx.mp4",
-        thumbnail: "/1.png", // 👈 apni image
-        caption: "From confused → started earning 💰",
-    },
-    {
-        id: 2,
-        src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778059247/IMG_6175_l3i9oy.mp4",
-        thumbnail: "/2.png",
-        caption: "First income feeling ❤️",
-    },
-    {
-        id: 3,
-        src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778061206/IMG_6173_pcbq7r.mp4",
-        thumbnail: "/3.png",
-        caption: "Started from zero 🚀",
-    },
-    {
-        id: 4,
-        src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778063785/IMG_6188_vhv9dz.mp4",
-        thumbnail: "/4.png",
-        caption: "Now working with clients 💻",
-    },
+  {
+    id: 1,
+    src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778058310/IMG_6174_pqzslx.mp4",
+    thumbnail: "/1.png",
+    caption: "I started earning my first online income after learning from him 💸",
+  },
+  {
+    id: 2,
+    src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778059247/IMG_6175_l3i9oy.mp4",
+    thumbnail: "/2.png",
+    caption: "From beginner to getting real freelance clients 🚀",
+  },
+  {
+    id: 3,
+    src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778061206/IMG_6173_pcbq7r.mp4",
+    thumbnail: "/3.png",
+    caption: "This training helped me start my online journey ❤️",
+  },
+  {
+    id: 4,
+    src: "https://res.cloudinary.com/dvjpyxdqy/video/upload/q_auto/f_auto/v1778063785/IMG_6188_vhv9dz.mp4",
+    thumbnail: "/4.png",
+    caption: "Now I’m working with clients and growing every month 💻",
+  },
 ];
-
 function VideoCard({ video, activeId, setActiveId }: any) {
     const [showMenu, setShowMenu] = useState(false);
     const isActive = activeId === video.id;
@@ -133,13 +131,16 @@ export default function VideoTestimonialsSection() {
 
                 {/* Heading */}
                 <div className="text-center mb-12">
-                    <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">My Story</span>
-                    <h2 className="mt-3 text-3xl sm:text-4xl font-black text-white">
-                        Watch How It All{" "}
-                        <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
-                            Started
-                        </span>
-                    </h2>
+                    <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">
+  Student Success Stories
+</span>
+
+<h2 className="mt-3 text-3xl sm:text-4xl font-black text-white">
+  See How Students Are{" "}
+  <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+    Changing Their Lives
+  </span>
+</h2>
                 </div>
 
                 {/* Videos */}
@@ -155,12 +156,13 @@ export default function VideoTestimonialsSection() {
                 </div>
 
                 {/* Text */}
-                <div className="text-center pb-12 mt-10 text-gray-300 text-sm md:text-base max-w-xl mx-auto">
-                    <p>
-                        They are now learning skills, getting freelance work,
-                        and building their own income — step by step.
-                    </p>
-                </div>
+                <div className="text-center pb-12 mt-10 text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
+  <p>
+    Real students. Real results.  
+    These students started with zero experience and are now earning online,
+    getting freelance clients, and building confidence step by step.
+  </p>
+</div>
 
                 
 
