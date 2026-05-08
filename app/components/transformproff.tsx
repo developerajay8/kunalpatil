@@ -1,266 +1,191 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
-import {
-  FaArrowRight,
-  FaCheckCircle,
-  FaPlay,
-} from "react-icons/fa";
 import LeadPopup from "./leadpopup";
 
-export default function TruthAbout() {
-  const sectionRef =
-    useRef<HTMLDivElement>(null);
-
-  const aboutRef =
-    useRef<HTMLDivElement>(null);
-
-  const [open, setOpen] =
-    useState(false);
+export default function TransformProof() {
+  const transRef = useRef<HTMLDivElement>(null);
+  const proofRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const items = [
-      sectionRef.current,
-      aboutRef.current,
-    ];
-
-    const observer =
-      new IntersectionObserver(
-        ([entry]) => {
-          if (
-            entry.isIntersecting
-          ) {
-            entry.target.classList.add(
-              "show"
-            );
-          }
-        },
-        {
-          threshold: 0.15,
-        }
-      );
-
-    items.forEach((el) => {
-      if (el)
-        observer.observe(el);
-    });
-
-    return () =>
-      observer.disconnect();
+    const els = [transRef.current, proofRef.current];
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) entry.target.classList.add("animate-in"); },
+      { threshold: 0.1 }
+    );
+    els.forEach((el) => el && observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
-  const points = [
-    "You were never taught real online skills.",
-    "Nobody gave you a simple roadmap.",
-    "You kept searching without direction.",
-    "You just needed proper guidance.",
+  const outcomes = [
+    { emoji: "📱", before: "Scrolling reels", after: "Creating content" },
+    { emoji: "💸", before: "Asking for money", after: "Earning your own" },
+    { emoji: "😰", before: "Feeling stuck", after: "Moving forward" },
+    { emoji: "🧠", before: "Self-doubt", after: "Confidence" },
   ];
 
-  const stats = [
-    {
-      value: "800+",
-      label: "Students Guided",
-    },
-    {
-      value: "45+",
-      label: "Digital Skills",
-    },
-    {
-      value: "₹50K+",
-      label: "Income Potential",
-    },
+  const testimonials = [
+    { name: "Priya S.", role: "Student → Freelancer", text: "Started from zero knowledge. Now earning ₹25K/month from home!", avatar: "PS" },
+    { name: "Anjali R.", role: "Housewife → Content Creator", text: "Never thought I could earn online. Kunal's guidance changed everything.", avatar: "AR" },
+    { name: "Sneha M.", role: "Working Professional", text: "Added a second income stream while keeping my job. So grateful!", avatar: "SM" },
+    { name: "Divya K.", role: "College Student", text: "Learning graphic design here was the best decision. Already getting clients.", avatar: "DK" },
   ];
 
   return (
     <>
-      {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-[#050505] py-20 sm:py-28">
-        {/* BACKGROUND */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[140px]" />
-
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px]" />
-
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
+      {/* Transformation Section */}
+      <section className="relative md:py-24 py-12 bg-[#0d0d0d] overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[400px] bg-orange-500/8 rounded-full blur-[120px]" />
+        </div>
 
         <div
-          ref={sectionRef}
-          className="
-            relative
-            z-10
-            max-w-7xl
-            mx-auto
-            px-4
-            sm:px-6
-            opacity-0
-            translate-y-10
-            duration-700
-            transition-all
-            [&.show]:opacity-100
-            [&.show]:translate-y-0
-          "
+          ref={transRef}
+          className="max-w-5xl mx-auto px-4 sm:px-6 opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
         >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* LEFT */}
-            <div>
-              <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-orange-500/20 bg-orange-500/10 text-orange-300 text-sm font-semibold mb-8 backdrop-blur-xl">
-                <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-                REALITY CHECK
-              </div>
-
-              <h1 className="text-4xl sm:text-6xl  font-black leading-tight text-white mb-8">
-                You Were Never
-                <span className="block bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
-                  Meant To Stay
-                </span>
-                Confused.
-              </h1>
-
-              <p className="text-gray-400 text-lg sm:text-xl leading-relaxed mb-10 max-w-2xl">
-                Most people fail
-                because nobody
-                teaches them the
-                right skills, the
-                right roadmap, and
-                the right mindset.
-              </p>
-
-              {/* POINTS */}
-              <div className="space-y-4 mb-10">
-                {points.map(
-                  (item, i) => (
-                    <div
-                      key={i}
-                      className="
-                        group
-                        relative
-                        overflow-hidden
-                        rounded-[26px]
-                        border
-                        border-white/10
-                        bg-white/[0.03]
-                        backdrop-blur-xl
-                        p-5
-                        transition-all
-                        duration-500
-                        hover:border-orange-400/30
-                        hover:-translate-y-1
-                      "
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition duration-500" />
-
-                      <div className="relative z-10 flex items-start gap-4">
-                        <div className="mt-1 text-orange-400 text-lg">
-                          <FaCheckCircle />
-                        </div>
-
-                        <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                          {item}
-                        </p>
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-
-              {/* BUTTONS */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={() =>
-                    setOpen(true)
-                  }
-                  className="
-                    group
-                    relative
-                    overflow-hidden
-                    px-8
-                    sm:px-10
-                    py-4
-                    rounded-full
-                    bg-gradient-to-r
-                    from-orange-500
-                    via-[#ff7b00]
-                    to-blue-600
-                    text-white
-                    font-semibold
-                    text-base
-                    sm:text-lg
-                    shadow-[0_10px_40px_rgba(255,115,0,0.35)]
-                    transition-all
-                    duration-300
-                    hover:scale-105
-                  "
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-3">
-                    Start Your Journey
-                    <FaArrowRight className="group-hover:translate-x-1 transition" />
-                  </span>
-                </button>
-
-                <button
-                  className="
-                    px-8
-                    py-4
-                    rounded-full
-                    border
-                    border-white/10
-                    bg-white/[0.03]
-                    backdrop-blur-xl
-                    text-white
-                    font-medium
-                    hover:bg-white/[0.05]
-                    transition
-                  "
-                >
-                  <span className="flex items-center justify-center gap-3">
-                    <FaPlay />
-                    Watch Story
-                  </span>
-                </button>
-              </div>
-            </div>
-
-            {/* RIGHT */}
-            <div className="relative">
-              {/* GLOW */}
-              <div className="absolute -inset-6 bg-gradient-to-br from-orange-500/20 to-blue-500/20 rounded-[40px] blur-3xl" />
-
-              <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.03] backdrop-blur-xl">
-                <img
-                  src="/IMG_4401.JPG.jpeg"
-                  alt="mentor"
-                  className="w-full aspect-[4/5] object-cover"
-                />
-
-                {/* OVERLAY */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-
-                {/* BADGE */}
-                <div className="absolute top-5 left-5 px-4 py-2 rounded-full bg-black/40 border border-white/10 backdrop-blur-xl text-white text-sm">
-                  🚀 Digital Mentor
-                </div>
-
-                {/* FLOATING CARD */}
-                <div className="absolute bottom-5 left-5 right-5 rounded-[28px] border border-white/10 bg-black/40 backdrop-blur-xl p-5">
-                  <p className="text-white text-lg font-semibold mb-2">
-                    “Your background
-                    doesn't decide your
-                    future.”
-                  </p>
-
-                  <p className="text-gray-400 text-sm">
-                    Learn high-income
-                    digital skills and
-                    build your own
-                    online journey.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div className="text-center mb-14">
+            <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">The Vision</span>
+            <h2 className="mt-3 text-3xl sm:text-5xl font-black text-white">
+              Imagine{" "}
+              <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                This…
+              </span>
+            </h2>
           </div>
+
+          {/* Before / After */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
+            {outcomes.map((o, i) => (
+              <div key={i} className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] text-center group hover:border-orange-500/25 transition-all duration-300">
+                <div className="text-3xl mb-4">{o.emoji}</div>
+                <div className="flex flex-col gap-2">
+                  <div className="px-3 py-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-xs line-through opacity-70">
+                    {o.before}
+                  </div>
+                  <div className="text-gray-400 text-xs">↓</div>
+                  <div className="px-3 py-2 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold">
+                    {o.after}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dream scenario */}
+          <div className="relative p-10 rounded-3xl bg-gradient-to-br from-orange-500/15 via-amber-500/8 to-orange-900/10 border border-orange-500/25 text-center overflow-hidden">
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent" />
+            <p className="text-2xl sm:text-3xl font-black text-white mb-4 leading-tight">
+              You wake up…<br />
+              Check your phone…<br />
+              And see{" "}
+              <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                money you earned yourself.
+              </span>
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mt-8 text-sm text-gray-400">
+              {["No asking.", "No explaining.", "No depending."].map((t, i) => (
+                <span key={i} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+                  {t}
+                </span>
+              ))}
+            </div>
+            <p className="mt-6 text-orange-300 font-semibold text-lg">
+              Not because someone gave it to you. <span className="text-white">But because you built it.</span>
+            </p>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10">
+          
+              <button onClick={() => setOpen(true)} className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
+                👉 Start Your Journey Today
+              </button>
+
+              <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
+
         </div>
       </section>
 
-      
+      {/* Social Proof */}
+      <section id="proof" className="relative md:py-24 py-12 bg-[#080808] overflow-hidden">
+        <div
+          ref={proofRef}
+          className="max-w-6xl mx-auto px-4 sm:px-6 opacity-0 translate-y-8 transition-all duration-700 [&.animate-in]:opacity-100 [&.animate-in]:translate-y-0"
+        >
+          <div className="text-center mb-14">
+            <span className="text-orange-400 text-sm font-semibold tracking-widest uppercase">Social Proof</span>
+            <h2 className="mt-3 text-3xl sm:text-5xl font-black text-white mb-4">
+              You're Not{" "}
+              <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                Alone
+              </span>{" "}
+              in This
+            </h2>
+            <p className="text-gray-500 text-lg">800+ people have already started their journey.</p>
+          </div>
+
+          {/* Stats bar */}
+          <div className="grid grid-cols-3 gap-4 mb-12 p-6 rounded-2xl bg-gradient-to-r from-orange-500/10 to-amber-500/5 border border-orange-500/20">
+            {[
+              { num: "800+", label: "Active Learners" },
+              { num: "45+", label: "Skills Covered" },
+              { num: "₹50K+", label: "Avg Monthly Earning" },
+            ].map((s, i) => (
+              <div key={i} className="text-center">
+                <div className="text-2xl sm:text-4xl font-black text-orange-400">{s.num}</div>
+                <div className="text-gray-500 text-xs sm:text-sm mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Testimonial cards */}
+          <div className="grid sm:grid-cols-2 gap-5 mb-10">
+            {testimonials.map((t, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] hover:border-orange-500/25 transition-all duration-300 group"
+              >
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                    {t.avatar}
+                  </div>
+                  <div>
+                    <div className="text-white font-semibold">{t.name}</div>
+                    <div className="text-orange-400 text-xs">{t.role}</div>
+                  </div>
+                  <div className="ml-auto text-orange-400 text-lg">★★★★★</div>
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed italic">"{t.text}"</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Screenshot placeholder */}
+          <div className="p-8 rounded-2xl bg-white/[0.02] border border-dashed border-white/[0.1] text-center">
+            <p className="text-gray-600 text-sm mb-2">📸 Add screenshots, DMs, and before/after stories here</p>
+            <p className="text-gray-700 text-xs">This section is critical for conversions — add real testimonials!</p>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10">
+          
+              <button  onClick={() => setOpen(true)} className="bg-[#f35113] cursor-pointer text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:scale-105 transition">
+                👉 Start Your Journey Today
+              </button>
+
+              <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
+
+        </div>
+      </section>
     </>
   );
 }

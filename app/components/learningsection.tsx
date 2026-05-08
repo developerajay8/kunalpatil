@@ -6,21 +6,21 @@ const founders = [
   {
     name: "Anubhav Dubey",
     role: "Founder of Chai Sutta Bar",
-    image: "/1.png",
+    image: "/image.png",
     caption:
       "Building one of India’s most recognized café franchise brands.",
   },
   {
     name: "Arjun Deshpande",
     role: "Founder of Generic Aadhaar",
-    image: "/1.png",
+    image: "/image copy.png",
     caption:
       "Known for making affordable medicines more accessible across India.",
   },
   {
     name: "Arjun Vaidya",
     role: "Founder of Dr. Vaidya’s",
-    image: "/1.png",
+    image: "/image copy 2.png",
     caption:
       "Building a modern Ayurveda brand for the new generation.",
   },
@@ -28,12 +28,11 @@ const founders = [
 
 export default function LearningSection() {
   return (
-    <section className="relative overflow-hidden bg-[#070707] py-24">
+    <section className="relative overflow-hidden bg-[#070707] py-20 sm:py-28">
       
-      {/* Background Glow */}
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-orange-500/10 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+      {/* Glow Effects */}
+      <div className="absolute top-0 left-0 w-[350px] h-[350px] bg-orange-500/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-amber-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
@@ -44,16 +43,16 @@ export default function LearningSection() {
           </span>
 
           <h2 className="text-4xl sm:text-6xl font-black leading-tight text-white">
-            Learning From{" "}
-            <span className="bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
-              People Building
+            Learn From{" "}
+            <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+              Founders
             </span>{" "}
-            Big Things
+            Building Big Brands
           </h2>
 
           <p className="mt-6 text-lg sm:text-xl text-gray-400 leading-relaxed">
             Growth becomes faster when you stay close to people building with
-            intent.
+            real intent.
           </p>
         </div>
 
@@ -62,19 +61,18 @@ export default function LearningSection() {
           {founders.map((item, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-orange-400/30"
+              className="group relative overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.03] backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-orange-400/30"
             >
               
               {/* Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-amber-500/10 opacity-0 group-hover:opacity-100 transition duration-500" />
 
               {/* Image */}
-              <div className="relative h-[420px] w-full overflow-hidden">
+              <div className="relative h-[420px] overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.name}
                   fill
-                  sizes="(max-width:768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
@@ -97,13 +95,13 @@ export default function LearningSection() {
                   {item.role}
                 </p>
 
-                <div className="w-14 h-[2px] bg-gradient-to-r from-orange-400 to-blue-400 rounded-full mb-4" />
+                <div className="w-14 h-[2px] bg-gradient-to-r from-orange-400 to-amber-400 rounded-full mb-4" />
 
                 <p className="text-gray-400 leading-relaxed text-[15px]">
                   {item.caption}
                 </p>
 
-                {/* Bottom Glow */}
+                {/* Bottom Border */}
                 <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-orange-400/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-500" />
               </div>
             </div>

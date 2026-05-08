@@ -87,7 +87,7 @@ export default function Hero() {
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white leading-[1.05] mb-6 tracking-tight">
           Stop{" "}
           <span className="relative inline-block">
-            <span className="bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 bg-clip-text text-transparent">
               Depending
             </span>
             <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
@@ -103,7 +103,7 @@ export default function Hero() {
           on Others
           <br />
           <span className="text-gray-200">Start</span>{" "}
-          <span className="bg-gradient-to-r from-orange-400 via-orange-300 to-blue-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
             Earning
           </span>{" "}
           <span className="text-gray-200">with Skills</span>
@@ -119,43 +119,12 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:mb-10 mb-5">
-           <button
-            onClick={() =>
-              setOpen(true)
-            }
-            className="
-              relative
-              overflow-hidden
-              px-8
-              sm:px-10
-              py-4
-              rounded-full
-              text-white
-              font-semibold
-              text-base
-              sm:text-lg
-              bg-gradient-to-r
-              from-orange-500
-              via-[#ff7b00]
-              to-blue-600
-              shadow-[0_10px_40px_rgba(255,115,0,0.35)]
-              transition-all
-              duration-300
-              hover:scale-105
-            "
+          <button  onClick={() => setOpen(true)}  
+            className="group relative sm:px-8 px-4 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-lg rounded-full overflow-hidden shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300"
           >
-            <span className="relative z-10">
-              👉 Start Your Journey
-              Today
-            </span>
-
-            <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition" />
+            <span className="relative z-10">👉 Start Your Journey Now</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </button>
-
-          <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
            
           <button
             onClick={() => scrollTo("#video")}
@@ -168,7 +137,10 @@ export default function Hero() {
           </button>
         </div>
 
-        
+        <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
 
         {/* Trust indicators */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
@@ -191,7 +163,7 @@ export default function Hero() {
 
       
 
-      <style jsx>{`
+      <style jsx>{` 
         @keyframes float {
           0%, 100% { transform: translateY(0px); opacity: 0.6; }
           50% { transform: translateY(-20px); opacity: 1; }
