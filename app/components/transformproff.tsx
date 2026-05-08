@@ -103,11 +103,6 @@ export default function TransformProof() {
                 👉 Start Your Journey Today
               </button>
 
-              <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
-
         </div>
       </section>
 

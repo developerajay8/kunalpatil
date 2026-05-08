@@ -120,7 +120,7 @@ export default function Hero() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:mb-10 mb-5">
           <button  onClick={() => setOpen(true)}  
-            className="group relative sm:px-8 px-4 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-lg rounded-full overflow-hidden shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300"
+            className="group relative cursor-pointer sm:px-8 px-4 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-lg rounded-full overflow-hidden shadow-2xl shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-105 transition-all duration-300"
           >
             <span className="relative z-10">👉 Start Your Journey Now</span>
             <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -137,10 +137,7 @@ export default function Hero() {
           </button>
         </div>
 
-        <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+       
 
         {/* Trust indicators */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">

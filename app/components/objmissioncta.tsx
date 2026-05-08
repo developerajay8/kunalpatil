@@ -170,11 +170,9 @@ export default function ObjMissionCTA() {
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
 
-            <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+            
           </div>
+          
 
           {/* Contact info */}
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
@@ -186,6 +184,10 @@ export default function ObjMissionCTA() {
             </a>
           </div>
         </div>
+        <LeadPopup
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
       </section>
 
       {/* Footer */}
@@ -203,15 +205,12 @@ export default function ObjMissionCTA() {
             </p>
 
             <a
-              onClick={() => setOpen(true)}
+             onClick={() => setOpen(true)}
               className="px-5 py-2.5 cursor-pointer bg-orange-500/15 border border-orange-500/30 text-orange-400 text-sm font-semibold rounded-full hover:bg-orange-500/25 transition-all"
             >
               👉 Start Now
             </a>
-             <LeadPopup
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+             
           </div>
           <p className="text-center text-gray-700 text-xs mt-6">
             © 2025 Kunal Patil. All rights reserved.
