@@ -12,11 +12,10 @@ export default function LeadPopup({
   isOpen,
   onClose,
 }: LeadPopupProps) {
-  const popupRef = useRef<HTMLDivElement>(null);
+  const popupRef =
+    useRef<HTMLDivElement>(null);
 
-  const [loading, setLoading] = useState(false);
-
-  const [submitted, setSubmitted] =
+  const [loading, setLoading] =
     useState(false);
 
   const [form, setForm] = useState({
@@ -26,30 +25,23 @@ export default function LeadPopup({
     profession: "",
   });
 
-  // Prevent duplicate submit
-  useEffect(() => {
-    const alreadySubmitted =
-      localStorage.getItem("lead_submitted");
-
-    if (alreadySubmitted) {
-      setSubmitted(true);
-    }
-  }, []);
-
-  // Lock scroll
+  // LOCK SCROLL
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow =
+        "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow =
+        "auto";
     }
 
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow =
+        "auto";
     };
   }, [isOpen]);
 
-  // Close outside click
+  // CLOSE OUTSIDE
   useEffect(() => {
     function handleOutside(
       e: MouseEvent
@@ -88,7 +80,8 @@ export default function LeadPopup({
   ) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.value,
     });
   };
 
@@ -97,17 +90,10 @@ export default function LeadPopup({
   ) => {
     e.preventDefault();
 
-    if (submitted) {
-      alert(
-        "You already submitted this form."
-      );
-      return;
-    }
-
     setLoading(true);
 
     try {
-      // WhatsApp Message
+      // WHATSAPP MESSAGE
       const message = `
 🔥 Hii Kunal sir, I’m intrested in this work can you please share me the work details?
 
@@ -117,23 +103,16 @@ export default function LeadPopup({
 💼 Profession: ${form.profession}
 `;
 
-      // Your WhatsApp Number
+      // YOUR NUMBER
       const whatsappNumber =
-        "919999999999";
+        "918643071462";
 
-      // OPEN WHATSAPP FIRST
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          message
-        )}`,
-        "_blank"
-      );
-
-      // THEN SEND TO GOOGLE SHEET
+      // GOOGLE SHEET SAVE
       await fetch(
-        "YOUR_GOOGLE_SCRIPT_WEB_APP_URL",
+        "https://script.google.com/macros/s/AKfycbxJwzBd9rlp_N3J6kxE4S96gczOvsL774grRx4atipV0vI253KsdtheDZUQXY6sgXqq/exec",
         {
           method: "POST",
+          mode: "no-cors",
           headers: {
             "Content-Type":
               "application/json",
@@ -146,16 +125,25 @@ export default function LeadPopup({
         }
       );
 
-      localStorage.setItem(
-        "lead_submitted",
-        "true"
+      // OPEN WHATSAPP
+      window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+          message
+        )}`,
+        "_blank"
       );
-
-      setSubmitted(true);
 
       alert(
-        "Form submitted successfully"
+        "Submitted Successfully"
       );
+
+      // RESET FORM
+      setForm({
+        fullName: "",
+        mobile: "",
+        gender: "",
+        profession: "",
+      });
 
       onClose();
     } catch (error) {
@@ -173,46 +161,37 @@ export default function LeadPopup({
         ref={popupRef}
         className="relative w-full max-w-md rounded-[32px] overflow-hidden border border-white/10 shadow-2xl"
       >
-        {/* Background */}
+        {/* BACKGROUND */}
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-[#ff7b00] to-blue-600" />
 
-        {/* Glow */}
-        <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-white/20 blur-3xl" />
-
-        <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-blue-400/20 blur-3xl" />
-
-        {/* Content */}
+        {/* CONTENT */}
         <div className="relative z-10 p-6 sm:p-8">
-          {/* Close */}
+          {/* CLOSE */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition"
+            className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/20 hover:bg-black/30 flex items-center justify-center text-white transition"
           >
             <X size={20} />
           </button>
 
-          {/* Heading */}
+          {/* HEADING */}
           <div className="mb-7">
-            <span className="inline-block px-4 py-1 rounded-full bg-white/10 border border-white/10 text-white text-xs font-semibold mb-4">
-              Limited Access
-            </span>
-
             <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight">
               Start Your Journey
             </h2>
 
             <p className="text-white/80 mt-3 text-sm">
               Fill the form and connect
-              instantly.
+              instantly on WhatsApp.
             </p>
           </div>
 
-          {/* Form */}
+          {/* FORM */}
           <form
             onSubmit={handleSubmit}
             className="space-y-4"
           >
-            {/* Full Name */}
+            {/* FULL NAME */}
             <input
               type="text"
               name="fullName"
@@ -220,10 +199,10 @@ export default function LeadPopup({
               placeholder="Full Name"
               value={form.fullName}
               onChange={handleChange}
-              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white placeholder:text-white/60 outline-none focus:border-white/40"
+              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white placeholder:text-white/60 outline-none"
             />
 
-            {/* Mobile */}
+            {/* MOBILE */}
             <input
               type="tel"
               name="mobile"
@@ -231,16 +210,16 @@ export default function LeadPopup({
               placeholder="Mobile Number"
               value={form.mobile}
               onChange={handleChange}
-              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white placeholder:text-white/60 outline-none focus:border-white/40"
+              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white placeholder:text-white/60 outline-none"
             />
 
-            {/* Gender */}
+            {/* GENDER */}
             <select
               name="gender"
               required
               value={form.gender}
               onChange={handleChange}
-              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white outline-none focus:border-white/40"
+              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white outline-none"
             >
               <option
                 value=""
@@ -262,22 +241,15 @@ export default function LeadPopup({
               >
                 Female
               </option>
-
-              <option
-                value="Other"
-                className="text-black"
-              >
-                Other
-              </option>
             </select>
 
-            {/* Profession */}
+            {/* PROFESSION */}
             <select
               name="profession"
               required
               value={form.profession}
               onChange={handleChange}
-              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white outline-none focus:border-white/40"
+              className="w-full h-14 rounded-2xl bg-white/10 border border-white/20 px-5 text-white outline-none"
             >
               <option
                 value=""
@@ -290,48 +262,31 @@ export default function LeadPopup({
                 value="Student"
                 className="text-black"
               >
-               Student 
+                Student
+              </option>
 
-
-
+              <option
+                value="Housewife"
+                className="text-black"
+              >
+                Housewife
               </option>
 
               <option
                 value="Working Professional"
                 className="text-black"
               >
-                Housewife 
-              </option>
-
-              <option
-                value="Business Owner"
-                className="text-black"
-              >
-                Working professional 
-              </option>
-
-              <option
-                value="Freelancer"
-                className="text-black"
-              >
-                Other
+                Working Professional
               </option>
             </select>
 
-            {/* Submit */}
+            {/* SUBMIT */}
             <button
               type="submit"
-              disabled={
-                loading || submitted
-              }
-              className="relative overflow-hidden w-full h-14 rounded-2xl bg-white text-black font-bold text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70"
+              disabled={loading}
+              className="w-full h-14 cursor-pointer rounded-2xl bg-white text-black font-bold text-lg transition-all duration-300 hover:scale-[1.02]"
             >
-              {!loading &&
-                !submitted && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-300 via-white to-blue-300 opacity-40 animate-pulse" />
-                )}
-
-              <span className="relative z-10 flex items-center justify-center gap-2">
+              <span className="flex items-center justify-center gap-2">
                 {loading ? (
                   <>
                     <Loader2
@@ -340,10 +295,8 @@ export default function LeadPopup({
                     />
                     Submitting...
                   </>
-                ) : submitted ? (
-                  "Already Submitted"
                 ) : (
-                  "Submit Now"
+                  "Submit & Open WhatsApp"
                 )}
               </span>
             </button>
