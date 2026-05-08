@@ -1,6 +1,71 @@
 @import "tailwindcss";
 
- 
+
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+::-webkit-scrollbar-thumb {
+  background: #f97316;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(249, 115, 22, 0.3);
+  color: #fff;
+}
+
+/* Float animation for hero particles */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-24px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+.animate-float {
+  animation: float ease-in-out infinite;
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Gradient border glow */
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+
+
+
+
+
+
+
+
+
+/*  
 :root {
   --accent: #9EFF00;
   --bg: #050505;
@@ -19,7 +84,6 @@ html {
   color: #000;
 }
  
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -32,4 +96,4 @@ html {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #9EFF0088;
-}
+} */
