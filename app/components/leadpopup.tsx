@@ -85,75 +85,89 @@ export default function LeadPopup({
     });
   };
 
-  const handleSubmit = async (
-    e: React.FormEvent
-  ) => {
-    e.preventDefault();
+const handleSubmit = async (
+  e: React.FormEvent
+) => {
+  e.preventDefault();
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      // WHATSAPP MESSAGE
-      const message = `
-🔥 Hii Kunal sir, I’m intrested in this work can you please share me the work details?
+  try {
+    // WHATSAPP MESSAGE
+    const message = `
+Hello Kunal Sir 👋
+
+I’m interested in this work and would like to know more details.
+
+Here are my details:
 
 👤 Full Name: ${form.fullName}
 📱 Mobile: ${form.mobile}
 🚻 Gender: ${form.gender}
 💼 Profession: ${form.profession}
+
+Please connect with me regarding this opportunity. 🚀
 `;
 
-      // YOUR NUMBER
-      const whatsappNumber =
-        "918643071462";
+    // YOUR NUMBER
+    const whatsappNumber =
+      "918643071462";
 
-      // GOOGLE SHEET SAVE
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxJwzBd9rlp_N3J6kxE4S96gczOvsL774grRx4atipV0vI253KsdtheDZUQXY6sgXqq/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            ...form,
-            createdAt:
-              new Date().toISOString(),
-          }),
-        }
-      );
+    // GOOGLE SHEET SAVE
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbxJwzBd9rlp_N3J6kxE4S96gczOvsL774grRx4atipV0vI253KsdtheDZUQXY6sgXqq/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          ...form,
+          createdAt:
+            new Date().toISOString(),
+        }),
+      }
+    );
 
-      // OPEN WHATSAPP
-      window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-          message
-        )}`,
-        "_blank"
-      );
-
-      alert(
-        "Submitted Successfully"
-      );
-
-      // RESET FORM
-      setForm({
-        fullName: "",
-        mobile: "",
-        gender: "",
-        profession: "",
-      });
-
-      onClose();
-    } catch (error) {
-      console.log(error);
-
-      alert("Something went wrong");
-    } finally {
-      setLoading(false);
+    // ✅ META PIXEL LEAD TRACK
+    if (typeof window !== "undefined") {
+      // @ts-ignore
+      window.fbq("track", "Lead");
     }
-  };
+
+    // OPEN WHATSAPP
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        message
+      )}`,
+      "_blank"
+    );
+
+    alert(
+      "Submitted Successfully"
+    );
+
+    // RESET FORM
+    setForm({
+      fullName: "",
+      mobile: "",
+      gender: "",
+      profession: "",
+    });
+
+    onClose();
+  } catch (error) {
+    console.log(error);
+
+    alert("Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
+
+  
 
   return (
     <div className="fixed inset-0 z-[999999] bg-black/70 backdrop-blur-md flex items-center justify-center p-4">

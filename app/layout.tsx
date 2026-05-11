@@ -47,19 +47,24 @@ export default function RootLayout({
             t.async=!0;
             t.src=v;
             s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)
-            }(window, document,'script',
+            s.parentNode.insertBefore(t,s)}
+            (window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
 
             fbq('init', '908482295567136');
+
+            // PAGE VIEW TRACK
             fbq('track', 'PageView');
+
+            // CONSENT
+            fbq('consent', 'grant');
           `}
         </Script>
-
-        
       </head>
+
       <body className="min-h-full flex flex-col">
         {children}
+
         {/* NOSCRIPT */}
         <noscript>
           <img
@@ -69,51 +74,10 @@ export default function RootLayout({
               display: "none",
             }}
             src="https://www.facebook.com/tr?id=908482295567136&ev=PageView&noscript=1"
+            alt=""
           />
         </noscript>
       </body>
     </html>
   );
 }
-
-
-
-
-
-// import type { Metadata } from "next";
-// import { Syne, Space_Grotesk } from "next/font/google";
-// import "./globals.css";
-
-// const syne = Syne({
-//   subsets: ["latin"],
-//   weight: ["400", "500", "600", "700", "800"],
-//   variable: "--font-syne",
-//   display: "swap",
-// });
-
-// const spaceGrotesk = Space_Grotesk({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700"],
-//   variable: "--font-space",
-//   display: "swap",
-// });
-
-// export const metadata: Metadata = {
-//   title: "TECHNEO – Best Software Solution",
-//   description:
-//     "High-Performance Software Designed To Streamline Operations & Boost Productivity",
-// };
-
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//     <html lang="en" className={`${syne.variable} ${spaceGrotesk.variable}`}>
-//       <body className="antialiased font-[var(--font-space)] bg-[#050505] text-white selection:bg-[#9EFF00] selection:text-black">
-//         {children}
-//       </body>
-//     </html>
-//   );
-// }
