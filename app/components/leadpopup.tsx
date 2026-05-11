@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Loader2, X } from "lucide-react";
+import { X } from "lucide-react";
 
 interface LeadPopupProps {
   isOpen: boolean;
@@ -14,9 +14,6 @@ export default function LeadPopup({
 }: LeadPopupProps) {
   const popupRef =
     useRef<HTMLDivElement>(null);
-
-  const [loading, setLoading] =
-    useState(false);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -85,14 +82,11 @@ export default function LeadPopup({
     });
   };
 
-const handleSubmit = async (
-  e: React.FormEvent
-) => {
-  e.preventDefault();
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
+    e.preventDefault();
 
-  setLoading(true);
-
-  try {
     // WHATSAPP MESSAGE
     const message = `
 Hello Kunal Sir 👋
@@ -113,22 +107,12 @@ Please connect with me regarding this opportunity. 🚀
     const whatsappNumber =
       "918643071462";
 
-    // GOOGLE SHEET SAVE
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbxJwzBd9rlp_N3J6kxE4S96gczOvsL774grRx4atipV0vI253KsdtheDZUQXY6sgXqq/exec",
-      {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type":
-            "application/json",
-        },
-        body: JSON.stringify({
-          ...form,
-          createdAt:
-            new Date().toISOString(),
-        }),
-      }
+    // ✅ OPEN WHATSAPP INSTANTLY
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        message
+      )}`,
+      "_blank"
     );
 
     // ✅ META PIXEL LEAD TRACK
@@ -137,17 +121,26 @@ Please connect with me regarding this opportunity. 🚀
       window.fbq("track", "Lead");
     }
 
-    // OPEN WHATSAPP
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-        message
-      )}`,
-      "_blank"
-    );
-
-    alert(
-      "Submitted Successfully"
-    );
+    // ✅ SAVE TO GOOGLE SHEET (ONLY ONE TIME)
+    try {
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxJwzBd9rlp_N3J6kxE4S96gczOvsL774grRx4atipV0vI253KsdtheDZUQXY6sgXqq/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json",
+          },
+          body: JSON.stringify({
+            ...form,
+            createdAt:
+              new Date().toISOString(),
+          }),
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
 
     // RESET FORM
     setForm({
@@ -158,16 +151,7 @@ Please connect with me regarding this opportunity. 🚀
     });
 
     onClose();
-  } catch (error) {
-    console.log(error);
-
-    alert("Something went wrong");
-  } finally {
-    setLoading(false);
-  }
-};
-
-  
+  };
 
   return (
     <div className="fixed inset-0 z-[999999] bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
@@ -297,22 +281,9 @@ Please connect with me regarding this opportunity. 🚀
             {/* SUBMIT */}
             <button
               type="submit"
-              disabled={loading}
               className="w-full h-14 cursor-pointer rounded-2xl bg-white text-black font-bold text-lg transition-all duration-300 hover:scale-[1.02]"
             >
-              <span className="flex items-center justify-center gap-2">
-                {loading ? (
-                  <>
-                    <Loader2
-                      className="animate-spin"
-                      size={20}
-                    />
-                    Submitting...
-                  </>
-                ) : (
-                  "Submit & Open WhatsApp"
-                )}
-              </span>
+              Submit & Open WhatsApp
             </button>
           </form>
         </div>
