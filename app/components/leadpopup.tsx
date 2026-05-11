@@ -107,40 +107,50 @@ Please connect with me regarding this opportunity. 🚀
     const whatsappNumber =
       "918643071462";
 
-    // ✅ OPEN WHATSAPP INSTANTLY
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-        message
-      )}`,
-      "_blank"
-    );
-
     // ✅ META PIXEL LEAD TRACK
     if (typeof window !== "undefined") {
       // @ts-ignore
       window.fbq("track", "Lead");
     }
 
-    // ✅ SAVE TO GOOGLE SHEET (ONLY ONE TIME)
-    try {
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxJwzBd9rlp_N3J6kxE4S96gczOvsL774grRx4atipV0vI253KsdtheDZUQXY6sgXqq/exec",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            ...form,
-            createdAt:
-              new Date().toISOString(),
-          }),
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
+    // ✅ GOOGLE SHEET SAVE
+    // IMPORTANT:
+    // no-cors lagana zaroori hai Google Apps Script ke liye
+    // aur body simple object me bhejna hai
+
+    fetch(
+      "https://script.google.com/macros/s/AKfycbxJwzBd9rlp_N3J6kxE4S96gczOvsL774grRx4atipV0vI253KsdtheDZUQXY6sgXqq/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type":
+            "application/json",
+        },
+        body: JSON.stringify({
+          fullName:
+            form.fullName,
+          mobile:
+            form.mobile,
+          gender:
+            form.gender,
+          profession:
+            form.profession,
+          createdAt:
+            new Date().toLocaleString(),
+        }),
+      }
+    ).catch((err) =>
+      console.log(err)
+    );
+
+    // ✅ INSTANT WHATSAPP OPEN
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+        message
+      )}`,
+      "_blank"
+    );
 
     // RESET FORM
     setForm({
